@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pl_badwater Cool Spots</title>
+<style>
+  body {
+    margin:0;
+    padding:20px;
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:#e5e5e5;
+  }
+  h1 { text-align:center; margin-bottom:30px; }
+  .gallery {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .spot-card {
+    background:#1a1a1a;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 3px 6px rgba(0,0,0,0.5);
+  }
+  .spot-card img {
+    max-width:100%;
+    border-radius:8px;
+  }
+  .spot-info { margin-top:5px; font-size:0.9rem; color:#60a5fa; }
+</style>
+</head>
+<body>
+
+<h1>pl_badwater Cool Spots</h1>
+<div class="gallery" id="gallery"></div>
+
+<script>
+// Load all images dynamically
+const images = [
+  "1hs5125.jpg",
+  "1wb6125.jpg",
+  "2cs6125.jpg",
+  "3wb6125.jpg",
+  // add all your images here
+];
+
+const gallery = document.getElementById("gallery");
+
+images.forEach(img => {
+  // Extract info from filename: e.g., 1wb5058
+  const match = img.match(/(\d)([a-z]{2})\d+/i);
+  let point = match ? match[1] : "?";
+  let typeCode = match ? match[2] : "??";
+
+  let typeName = "";
+  if(typeCode === "wb") typeName = "Wallbug";
+  else if(typeCode === "hs") typeName = "High Spot";
+  else if(typeCode === "cs") typeName = "Cool Spot";
+  else typeName = "Unknown";
+
+  const card = document.createElement("div");
+  card.className = "spot-card";
+  card.innerHTML = `
+    <img src="images/${img}" alt="${typeName} at point ${point}">
+    <div class="spot-info">Point: ${point} | Type: ${typeName}</div>
+  `;
+  gallery.appendChild(card);
+});
+</script>
+
+</body>
+</html>
