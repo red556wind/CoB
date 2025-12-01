@@ -123,14 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("players_updated.json")
     .then(res => res.json())
     .then(data => {
-      // quick calc for score
       data.forEach(p => {
         let kills = Math.min(p.spoonKills, 100000);
         let score = (0.15 * (p.jumpTier||0)/5 + 0.85 * Math.log(kills+1)/15.69) * 100/77.37085179 * 100;
         p.skill = score.toFixed(2);
       });
 
-      // sort best to worst
+
       data.sort((a,b) => b.skill - a.skill);
 
       const container = document.getElementById("playerList");
@@ -155,13 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(card);
       });
 
-      // totals
+
       let totalKills = data.reduce((sum,p)=>sum+p.spoonKills,0);
       let totalHours = data.reduce((sum,p)=>sum+p.hoursPlayed,0);
       document.getElementById("totalSpoonKills").textContent = "Total Spoon Kills: " + totalKills.toLocaleString();
       document.getElementById("totalHoursPlayed").textContent = "Total Hours Played: " + totalHours.toLocaleString();
 
-      // search filter
+
       document.getElementById("searchInput").addEventListener("input", e=>{
         let val = e.target.value.toLowerCase();
         document.querySelectorAll(".card").forEach(c=>{
@@ -177,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
