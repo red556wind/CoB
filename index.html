@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       data.forEach(p => {
         let kills = Math.min(p.spoonKills, 100000);
-        let score = (0.15 * (p.jumpTier||0)/8 + 0.85 * Math.log(kills+1)/15.69) * 100/77.37085179 * 100;
+        let score = (0.15 * (p.jumpTier||0)/5 + 0.85 * Math.log(kills+1)/15.69) * 100/77.37085179 * 100;
         p.skill = score.toFixed(2);
       });
 
@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
