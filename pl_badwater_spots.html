@@ -39,19 +39,14 @@
 <div class="gallery" id="gallery"></div>
 
 <script>
-// Load all images dynamically
+
 const images = [
-  "1hs5125.jpg",
-  "1wb6125.jpg",
-  "2cs6125.jpg",
-  "3wb6125.jpg",
-  // add all your images here
 ];
 
 const gallery = document.getElementById("gallery");
 
 images.forEach(img => {
-  // Extract info from filename: e.g., 1wb5058
+
   const match = img.match(/(\d)([a-z]{2})\d+/i);
   let point = match ? match[1] : "?";
   let typeCode = match ? match[2] : "??";
