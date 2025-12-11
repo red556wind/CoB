@@ -36,7 +36,7 @@ def get_tf2_hours(steamid64):
     return None
 
 
-with open("playersupdated.json", "r") as f:
+with open("players_updated.json", "r") as f:
     players = json.load(f)
 
 
